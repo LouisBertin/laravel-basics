@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::get('/posts/add', 'PostController@add')->name('posts.add');
 Route::get('/posts/show', 'PostController@show')->name('posts.show');
+Route::get('/posts/delete/{id}', 'PostController@delete')->name('posts.delete');
 
 /**
  * FORMS

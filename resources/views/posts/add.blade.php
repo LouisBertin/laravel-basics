@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="col-md-6">
+        <a href="{{ route('posts.show') }}">See all posts</a> <br><br>
+
+        <h3>Ajax form</h3>
         <label for="">Title :</label>
         <p contenteditable="true" class="title">
             title
@@ -14,6 +17,8 @@
     </div>
 
     <div class="col-md-6">
+        <br><br>
+        <h3>Classic form</h3>
         {!! Form::open(['route' => 'post.add.classic']) !!}
             {!! Form::token() !!}
 

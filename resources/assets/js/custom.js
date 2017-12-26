@@ -1,5 +1,5 @@
 $('.add-post').on('click', function (e) {
-    e.preventDefault();
+    e.defaultPrevented;
     var title = $.trim($('.title').text());
     var body = $.trim($('.body').text());
 
