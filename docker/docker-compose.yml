@@ -1,0 +1,33 @@
+version: '3'
+services:
+  web:
+    build: ./
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ../:/var/www/html
+      - ./apache/site.conf:/etc/apache2/sites-enabled/000-default.conf
+      - ./apache/site-ssl.conf:/etc/apache2/sites-enabled/default-ssl.conf
+
+  mariadb:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./laravel:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mariadb
+    environment:
+      PMA_HOST: mariadb
+      PMA_PORT: 3306
+    ports:
+      - '8080:80'
+
+volumes:
+  laravel:
