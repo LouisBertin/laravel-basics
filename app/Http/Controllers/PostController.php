@@ -53,15 +53,25 @@ class PostController extends Controller
      */
     public function addclassic(Request $request)
     {
-        $title = $request->input('title');;
+        $title = $request->input('title');
         $body = $request->input('body');
 
-        $posts = new Posts;
-        $posts->title = $title;
-        $posts->body = $body;
-
-        $posts->save();
+        Posts::create(['title' => $title, 'body' => $body]);
 
         return redirect()->route('posts.add');
+    }
+
+    /**
+     * suppression des posts
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $post = new Posts();
+        $post->find($id)->delete();
+
+        return redirect()->route('posts.show');
     }
 }
